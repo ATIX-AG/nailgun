@@ -7251,6 +7251,7 @@ class Repository(
             ),
             'http_proxy_id': entity_fields.IntegerField(),
             'deb_releases': entity_fields.StringField(),
+            'deb_errata_url': entity_fields.StringField(),
             'deb_components': entity_fields.StringField(),
             'deb_architectures': entity_fields.StringField(),
             'download_concurrency': entity_fields.IntegerField(),
