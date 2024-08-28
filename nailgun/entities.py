@@ -2654,6 +2654,8 @@ class ContentViewVersion(Entity, EntityDeleteMixin, EntityReadMixin, EntitySearc
             'srpm_count': entity_fields.IntegerField(),
             'version': entity_fields.StringField(),
             'yum_repository_count': entity_fields.IntegerField(),
+            'deb_repository_count': entity_fields.IntegerField(),
+            'deb_count': entity_fields.IntegerField(),
         }
         self._meta = {
             'api_path': 'katello/api/v2/content_view_versions',
@@ -2861,7 +2863,15 @@ class AbstractContentViewFilter(
             'content_view': entity_fields.OneToOneField(ContentView, required=True),
             'description': entity_fields.StringField(),
             'type': entity_fields.StringField(
-                choices=('erratum', 'erratum_date', 'package_group', 'rpm', 'modulemd', 'docker'),
+                choices=(
+                    'erratum',
+                    'erratum_date',
+                    'package_group',
+                    'rpm',
+                    'modulemd',
+                    'docker',
+                    'deb',
+                ),
                 required=True,
             ),
             'inclusion': entity_fields.BooleanField(),
