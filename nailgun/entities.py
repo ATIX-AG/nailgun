@@ -6936,6 +6936,29 @@ class Package(Entity, EntityReadMixin, EntitySearchMixin):
         super().__init__(server_config=server_config, **kwargs)
 
 
+class DebPackage(Entity, EntityReadMixin, EntitySearchMixin):
+    """A representation of a DebPackage entity."""
+
+    def __init__(self, server_config=None, **kwargs):
+        self._fields = {
+            'arch': entity_fields.StringField(),
+            'checksum': entity_fields.StringField(),
+            'description': entity_fields.StringField(),
+            'epoch': entity_fields.StringField(),
+            'filename': entity_fields.StringField(),
+            'name': entity_fields.StringField(unique=True),
+            'nvrea': entity_fields.StringField(),
+            'nvra': entity_fields.StringField(),
+            'release': entity_fields.StringField(),
+            'repository': entity_fields.OneToOneField(Repository),
+            'sourcerpm': entity_fields.StringField(),
+            'summary': entity_fields.StringField(),
+            'version': entity_fields.StringField(),
+        }
+        self._meta = {'api_path': 'katello/api/v2/debs'}
+        super().__init__(server_config=server_config, **kwargs)
+
+
 class ModuleStream(Entity, EntityReadMixin, EntitySearchMixin):
     """A representation of a Module Stream entity."""
 
